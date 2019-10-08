@@ -63,35 +63,49 @@ while t == True:
         while l == True:
             dataOfEvent = tree.xpath('//tr//td//strong["fall 2019"]/text()')[j]
             x = nameEvent[j]
-            str = x
-            if(semestar.startswith("Fall") and str.startswith(lastDay)):
+            str = x + "\\n"
+            if (semestar.startswith("Summer 2020") and str.startswith(lastDay + "Classes - Summer II ")):
                 l = False
-                new_dict[dataOfEvent] = str
+                new_dict[str] = dataOfEvent
                 j = j + 1
                 app_json = json.dumps(new_dict)
                 with open(semestar + ".json", "w") as outfile:
                     json.dump(app_json, outfile)
-
+                break
+            elif ((semestar.startswith("Summer") and not semestar.startswith("Summer 2020") ) and str.startswith(lastDay)):
+                l = False
+                new_dict[str] = dataOfEvent
+                j = j + 1
+                app_json = json.dumps(new_dict)
+                with open(semestar + ".json", "w") as outfile:
+                    json.dump(app_json, outfile)
+                break
+            elif (semestar.startswith("Fall 2020") and str.startswith(" Finals End")):
+                l = False
+                new_dict[str] = dataOfEvent
+                j = j + 1
+                app_json = json.dumps(new_dict)
+                with open(semestar + ".json", "w") as outfile:
+                    json.dump(app_json, outfile)
+                break
+            elif ((semestar.startswith("Fall") and not semestar.startswith("Fall 2020") ) and str.startswith(lastDay)):
+                l = False
+                new_dict[str] = dataOfEvent
+                j = j + 1
+                app_json = json.dumps(new_dict)
+                with open(semestar + ".json", "w") as outfile:
+                    json.dump(app_json, outfile)
                 break
             elif (semestar.startswith("Spring") and str.startswith(" Commencement")):
                 l = False
-                new_dict[dataOfEvent] = str
-                j = j + 1
-                app_json = json.dumps(new_dict)
-                with open(semestar + ".json", "w") as outfile:
-                    json.dump(app_json, outfile)
-
-                break
-            elif (semestar.startswith("Summer") and str.startswith(lastDay)):
-                l = False
-                new_dict[dataOfEvent] = str
+                new_dict[str] = dataOfEvent
                 j = j + 1
                 app_json = json.dumps(new_dict)
                 with open(semestar + ".json", "w") as outfile:
                     json.dump(app_json, outfile)
                 break
             else:
-                new_dict[dataOfEvent] = str
+                new_dict[str] = dataOfEvent
                 j = j + 1
     except IndexError:
         t = False
