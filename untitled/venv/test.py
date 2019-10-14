@@ -68,7 +68,7 @@ while t == True:
                 l = False
                 new_dict[str] = dataOfEvent
                 j = j + 1
-                app_json = json.dumps(new_dict)
+                app_json = json.dumps(new_dict,indent=4, separators=(',',':'))
                 with open(semestar + ".json", "w") as outfile:
                     json.dump(app_json, outfile)
                 break
@@ -94,7 +94,12 @@ while t == True:
                 j = j + 1
                 app_json = json.dumps(new_dict)
                 with open(semestar + ".json", "w") as outfile:
+<<<<<<< Updated upstream
                     json.dump(app_json, outfile)
+=======
+                    json.dump(app_json, outfile,  indent=4, separators=(',',':'))
+
+>>>>>>> Stashed changes
                 break
             elif (semestar.startswith("Spring") and str.startswith(" Commencement")):
                 l = False
@@ -102,7 +107,7 @@ while t == True:
                 j = j + 1
                 app_json = json.dumps(new_dict)
                 with open(semestar + ".json", "w") as outfile:
-                    json.dump(app_json, outfile)
+                    json.dump(app_json, outfile, indent=4, separators=(',',':'))
                 break
             else:
                 new_dict[str] = dataOfEvent
@@ -111,3 +116,20 @@ while t == True:
         t = False
     i = i + 1
     l = True
+
+
+# def get_event_date(event, semester):
+#     # default value for date if event is not found
+#     date = "event not found"
+#
+#     #JSON files stored as the semester name
+#     with open(semester + ".json") as json_file:
+#         data = []
+#         x = 0
+#         for line in json_file:
+#             data.append(json.loads(line))
+#             print(data["August 25"])
+#             x = x +1
+#     return date
+# event = get_event_date("open planning", "FALL 2019")
+# print(event)
